@@ -15,7 +15,7 @@ http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/sc
 	</secure-properties:config>
 	<flow name="cicdpracticeFlow" doc:id="a7b42084-2d9f-4aeb-b737-0aee102255aa" >
 		<http:listener doc:name="Listener" doc:id="08b1f3c8-690a-4122-a875-58c567c074f6" config-ref="HTTP_Listener_config" path="/${http.path}"/>
-		<set-payload value='#["My new project CI/CD Pipelines"]' doc:name="Set Payload" doc:id="2e6d0ba0-1a09-4964-9928-0e5c1ec50919" />
+		<set-payload value='#["My new project CI/CD Pipeline"]' doc:name="Set Payload" doc:id="2e6d0ba0-1a09-4964-9928-0e5c1ec50919" />
 
 	</flow>
 </mule>
