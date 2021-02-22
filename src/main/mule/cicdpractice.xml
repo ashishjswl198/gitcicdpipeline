@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="a8ceb946-0cb7-4d3f-87fd-9e1765c7ad7e" basePath="/${http.basepath}" >
+		<http:listener-connection host="0.0.0.0" port="${secure::http.port}" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="94db602c-8d1f-4720-9fb7-a80ce3398fb4" file="projproperties\cicd-${env}.properties" />
+	<global-property doc:name="Global Property" doc:id="ac87b3c0-214a-4127-a650-5e5469fb4f44" name="env" value="${env}" />
+	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="8620a8a1-a6fb-4008-aa93-b987734eff85" file="projproperties\cicd-${env}.properties" key="${mule.key}" >
+		<secure-properties:encrypt algorithm="Blowfish" />
+	</secure-properties:config>
+	<flow name="cicdpracticeFlow" doc:id="a7b42084-2d9f-4aeb-b737-0aee102255aa" >
+		<http:listener doc:name="Listener" doc:id="08b1f3c8-690a-4122-a875-58c567c074f6" config-ref="HTTP_Listener_config" path="/${http.path}"/>
+		<set-payload value='#["My new project CI/CD Pipelines"]' doc:name="Set Payload" doc:id="2e6d0ba0-1a09-4964-9928-0e5c1ec50919" />
+
+	</flow>
+</mule>
